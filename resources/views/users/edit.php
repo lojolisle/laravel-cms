@@ -82,6 +82,12 @@
                 <?php endif; ?>
             </div>
 
+            <div class="w3-margin-bottom">
+                <label class="d-block" for="about">About:</label>
+                <input class="w3-input" type="text" name="about" id="about" value="<?= old('about', $user->about) ?>">
+            </div>
+
+
             <button type="submit" class="w3-button w3-green">Save</button>
 
         </form>

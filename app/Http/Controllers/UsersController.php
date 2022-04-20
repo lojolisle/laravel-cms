@@ -33,6 +33,7 @@ class UsersController extends Controller
             'last' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required',
+            'about' => 'nullable'
         ]);
 
         $user = new User();
@@ -40,6 +41,7 @@ class UsersController extends Controller
         $user->last = $attributes['last'];
         $user->email = $attributes['email'];
         $user->password = $attributes['password'];
+        $user->about = $attributes['about'];
         $user->save();
 
         return redirect('/console/users/list')
@@ -66,11 +68,13 @@ class UsersController extends Controller
                 Rule::unique('users')->ignore($user->id),
             ],
             'password' => 'nullable',
+            'about' => 'nullable'
         ]);
 
         $user->first = $attributes['first'];
         $user->last = $attributes['last'];
         $user->email = $attributes['email'];
+        $user->about = $attributes['about'];
 
         if ($attributes['password']) $user->password = $attributes['password'];
 
@@ -117,5 +121,12 @@ class UsersController extends Controller
 
         return redirect('/console/users/list')
             ->with('message', 'User has been deleted!');
+    }
+
+    
+    // API -> GET: api/users/{userId}
+    public function getAll($userId)
+    {
+        return User::where('id', '=', $userId)->get();
     }
 }

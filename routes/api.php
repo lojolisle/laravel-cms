@@ -7,6 +7,7 @@ use App\Http\Controllers\EducationController;
 use App\Http\Controllers\EducationLevelsController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\SkillsController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,7 @@ Route::get('/educationlevels', [EducationLevelsController::class, 'getAll']);
 Route::get('/education/{userId:id}', [EducationController::class, 'getAll'])->where('type', '[0-9]+');
 
 Route::get('/projects/{userId:id}', [ProjectsController::class, 'getAll'])->where('type', '[0-9]+');
-
+Route::get('/users/{userId:id}', [UsersController::class, 'getAll'])->where('type', '[0-9]+');
 Route::get('/contactrequests/{userId:id}', [ContactRequestsController::class, 'getAll'])->where('type', '[0-9]+');
 Route::post('/contactrequests', [ContactRequestsController::class, 'store'])->where('type', '[0-9]+');
 
